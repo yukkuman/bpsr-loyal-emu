@@ -16,10 +16,10 @@
 
 ### セットアップ
 
-1. `config.example.json` を `config.json` にリネーム
-2. `config.json` の `discord_webhook` に通知先の Webhook URL を設定
-3. `LoyalBoarlet.exe` を起動
-4. ブラウザで `http://127.0.0.1:8080` が開く（または自動で GUI ウィンドウが起動）
+1. `config.json` の `discord_webhook` に通知先の Webhook URL を設定
+2. `LoyalBoarlet.exe` を起動
+3. ブラウザで `http://127.0.0.1:8080` が開く（または自動で GUI ウィンドウが起動）
+4. エミュを検知させ、巡回チャンネル一覧にチャンネルを挿入
 
 ### 配布ファイル一覧
 
