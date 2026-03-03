@@ -1,0 +1,88 @@
+# LoyalBoarlet Monitor
+
+スターレゾナンスでゴールドウリボを自動検知し、Discordへ通知するツール。
+
+---
+
+## 配布版の使い方
+
+### 必要なソフトウェア
+
+| ソフト | 用途 | 入手先 |
+|---|---|---|
+| **Npcap** | ネットワークキャプチャ | https://npcap.com/ |
+
+> Npcap インストール時は **「WinPcap API-compatible Mode」にチェック**を入れてください。
+
+### セットアップ
+
+1. `config.example.json` を `config.json` にリネーム
+2. `config.json` の `discord_webhook` に通知先の Webhook URL を設定
+3. `LoyalBoarlet.exe` を起動
+4. ブラウザで `http://127.0.0.1:8080` が開く（または自動で GUI ウィンドウが起動）
+
+### 配布ファイル一覧
+
+```
+LoyalBoarlet.exe        ← 実行ファイル
+config.json             ← 設定ファイル（config.example.json をコピーして作成）
+channels.txt            ← 巡回チャンネルリスト（1行1番号）
+data/
+  locations.json        ← マップ場所名データ
+```
+
+---
+
+## ビルド方法（開発者向け）
+
+### 前提条件
+
+- Go 1.23+
+- MinGW-w64 (GCC) が PATH に存在すること
+- [Npcap SDK](https://npcap.com/#download) を `C:\npcap-sdk` に展開
+
+### ビルドコマンド
+
+```powershell
+# リリースビルド（コンソール非表示）
+.\build.ps1
+
+# デバッグビルド（コンソール表示あり）
+.\build.ps1 -Debug
+
+# Npcap SDK のパスを指定する場合
+.\build.ps1 -NpcapSdk "C:\path\to\npcap-sdk"
+```
+
+出力先: `release\LoyalBoarlet.exe` および `LoyalBoarlet-vX.Y.Z-windows-amd64.zip`
+
+### 手動ビルド
+
+```powershell
+$env:CGO_ENABLED = "1"
+$env:CGO_CFLAGS  = "-IC:\npcap-sdk\Include"
+$env:CGO_LDFLAGS = "-LC:\npcap-sdk\Lib\x64 -lwpcap"
+go build -ldflags "-s -w -H windowsgui -X main.Version=dev" -o LoyalBoarlet.exe .
+```
+
+---
+
+## 設定ファイル (config.json)
+
+| キー | デフォルト | 説明 |
+|---|---|---|
+| `network` | `"auto"` | NIC名。`"auto"` で自動選択 |
+| `discord_webhook` | `""` | Discord Webhook URL |
+| `debounce_seconds` | `30` | 同Ch同場所の重複通知を抑制する秒数 |
+| `gui_port` | `8080` | Web GUI ポート番号 |
+| `adb_path` | `"adb"` | adb.exe のパス |
+| `mumu_tap_x/y` | `975, 664` | チャンネル入力欄タップ座標 |
+| `mumu_delay_ms` | `800` | ADB コマンド間ウェイト (ms) |
+| `patrol_channels_file` | `"channels.txt"` | 巡回チャンネルリストファイル |
+| `patrol_dwell_secs` | `30` | 各チャンネル滞在秒数 |
+
+---
+
+
+
+

@@ -1,0 +1,16 @@
+{
+  "network": "auto",
+  "auto_check": 3,
+  "locations": "data/locations.json",
+  "discord_webhook": "https://discord.com/api/webhooks/YOUR_WEBHOOK_ID/YOUR_WEBHOOK_TOKEN",
+  "debounce_seconds": 30,
+  "gui_port": 8080,
+  "adb_path": "adb",
+  "mumu_tap_x": 975,
+  "mumu_tap_y": 664,
+  "mumu_clear_length": 3,
+  "mumu_pre_keycode": "KEYCODE_P",
+  "mumu_delay_ms": 800,
+  "patrol_channels_file": "channels.txt",
+  "patrol_dwell_secs": 30
+}
