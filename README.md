@@ -83,6 +83,16 @@ go build -ldflags "-s -w -H windowsgui -X main.Version=dev" -o LoyalBoarlet.exe 
 
 ---
 
+## ライセンス
 
+このプロジェクトは [GNU Affero General Public License v3.0 (AGPL-3.0)](LICENSE) のもとで公開されています。
 
+### 原著作物について
 
+本ソフトウェアは [balrogsxt/StarResonanceAPI](https://github.com/balrogsxt/StarResonanceAPI)（Copyright (C) balrogsxt）を元に改変・拡張したものです。
+
+AGPL-3.0 に基づき、以下の条件が適用されます：
+
+- 改変版を配布・公開する場合は、改変後のソースコードも AGPL-3.0 で公開する必要があります
+- 元の著作権表示を維持する必要があります
+- 派生物も同じく AGPL-3.0 ライセンスを適用する必要があります
